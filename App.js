@@ -1,10 +1,62 @@
-import { StatusBar } from "expo-status-bar";
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import ComponentsScreen from "./src/screens/ComponentScreen";
 import ListScreen from "./src/screens/ListScreen";
-export default function App() {
-  return <ListScreen />;
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./src/screens/HomeScreen";
+import PicturesScreen from "./src/screens/PicturesScreen";
+import CounterScreen from "./src/screens/CounterScreen";
+import RandomColorScreen from "./src/screens/RandomColorScreen";
+import RgbControllerScreen from "./src/screens/RgbControllerScreen";
+const Stack = createStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="HomeScreen">
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{ title: "Home Screen" }}
+        />
+        <Stack.Screen
+          name="ListScreen"
+          component={ListScreen}
+          options={{ title: "List Screen" }}
+        />
+        <Stack.Screen
+          options={{ title: "Component Screen" }}
+          name="ComponentsScreen"
+          component={ComponentsScreen}
+        />
+
+        <Stack.Screen
+          options={{ title: "Pictures Screen" }}
+          name="PicturesScreen"
+          component={PicturesScreen}
+        />
+
+        <Stack.Screen
+          options={{ title: "Counter Screen" }}
+          name="CounterScreen"
+          component={CounterScreen}
+        />
+        <Stack.Screen
+          options={{ title: "Random Color Screen" }}
+          name="RandomColorScreen"
+          component={RandomColorScreen}
+        />
+
+        <Stack.Screen
+          options={{ title: "RGB Controller Screen" }}
+          name="RgbControllerScreen"
+          component={RgbControllerScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -19,3 +71,5 @@ const styles = StyleSheet.create({
     paddingTop: "50px",
   },
 });
+
+export default App;
