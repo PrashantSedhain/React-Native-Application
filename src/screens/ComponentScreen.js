@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import NameInputComponent from "../components/NameInputComponent";
-import { FlatList, TextInput } from "react-native-gesture-handler";
+import {
+  FlatList,
+  TextInput,
+  TouchableOpacity,
+} from "react-native-gesture-handler";
 
 const Person = {
   name: String,
@@ -10,7 +14,7 @@ const Person = {
 };
 
 const ComponentsScreen = ({ navigation }) => {
-  const [selectedValue, setSelectedValue] = useState(0);
+  const [selectedValue, setSelectedValue] = useState(1);
   var peopleArray = [];
   const data = {
     count: selectedValue,
@@ -61,10 +65,12 @@ const ComponentsScreen = ({ navigation }) => {
           return <NameInputComponent />;
         }}
       />
-      {/* <NameInputComponent />
-      <NameInputComponent />
-      <NameInputComponent />
-      <NameInputComponent /> */}
+
+      <TouchableOpacity style={styles.bottom}>
+        <Text style={{ textAlign: "center", color: "white", fontSize: 17 }}>
+          Continue
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -91,6 +97,16 @@ const styles = StyleSheet.create({
 
   numbering: {
     fontSize: 18,
+  },
+
+  bottom: {
+    alignSelf: "center",
+    justifyContent: "center",
+    width: 180,
+    height: 50,
+    margin: 130,
+    backgroundColor: "#d42511",
+    borderRadius: 15,
   },
 });
 
