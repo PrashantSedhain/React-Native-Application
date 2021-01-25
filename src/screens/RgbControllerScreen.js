@@ -1,61 +1,60 @@
 import react from "react";
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import { Text, StyleSheet, View } from "react-native";
 import ButtonComponent from "../components/ButtonComponent";
 
-const RgbControllerScreen = () => {
-  const [red, setRed] = useState(250);
-  const [green, setGreen] = useState(250);
-  const [blue, setBlue] = useState(200);
+const reducerFunc = (state, action) => {
+  // state === {red: number, green: number, blue: number}
+  // action = {colorToChange" 'red' || 'green', || 'blue', ampount: 15 || -15 }
 
-  const setColor = (colorName, change) => {
-    if (colorName === "Red") {
-      if (red + change > 255 || red + change < 0) {
-        return;
-      } else {
-        setRed(red + change);
-      }
-    } else if (colorName === "Blue") {
-      if (blue + change > 255 || blue + change < 0) {
-        return;
-      } else {
-        setBlue(blue + change);
-      }
-    } else if (colorName === "Green") {
-      if (green + change > 255 || green + change < 0) {
-        return;
-      } else {
-        setBlue(blue + change);
-      }
-    }
-  };
+  switch (action.colorToChange) {
+    case "red":
+      return { ...state, red: state.red + action.amount };
+    case "green":
+      return { ...state, green: state.red + action.amount };
+
+    case "blue":
+      return { ...state, blue: state.red + action.amount };
+
+    default:
+      return state;
+  }
+};
+
+const RgbControllerScreen = () => {
+  const [state, dispatch] = useReducer(reducerFunc, {
+    red: 0,
+    green: 0,
+    blue: 0,
+  });
+
   return (
     <View>
       <Text style={styles.textStyle}>RGB Controller Screen</Text>
       <ButtonComponent
         onClickMore={() => {
-          setRed(red + 1);
+          dispatch({ colorToChange: "red", amount: 10 });
         }}
         onClickLess={() => {
-          setRed(red - 1);
+          dispatch({ colorToChange: "red", amount: -10 });
         }}
         color="Red"
       />
       <ButtonComponent
         onClickMore={() => {
-          setGreen(green + 1);
+          dispatch({ colorToChange: "green", amount: 10 });
         }}
         onClickLess={() => {
-          setGreen(green - 1);
+          dispatch({ colorToChange: "green", amount: -10 });
         }}
         color="Green"
       />
       <ButtonComponent
         onClickMore={() => {
-          setBlue(blue + 1);
+          dispatch({ colorToChange: "blue", amount: 10 });
         }}
         onClickLess={() => {
-          setBlue(blue - 1);
+          dispatch({ colorToChange: "blue", amount: -10 });
         }}
         color="Blue"
       />
@@ -64,10 +63,10 @@ const RgbControllerScreen = () => {
         style={{
           width: 100,
           height: 100,
-          backgroundColor: `rgb(${red},${green},${blue} )`,
+          backgroundColor: `rgb(${state.red},${state.green},${state.blue} )`,
         }}
       ></View>
-      <Text>{`(${red}, ${green},${blue}`}</Text>
+      {/* <Text>{`(${red}, ${green},${blue}`}</Text> */}
     </View>
   );
 };

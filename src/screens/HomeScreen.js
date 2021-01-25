@@ -16,42 +16,45 @@ const HomeScreen = ({ navigation }) => {
         }}
         title="Go to List Screen"
       />
-      <TouchableOpacity
+      <Button
+        title="Go to Components Screen"
         onPress={() => {
           navigation.navigate("ComponentsScreen");
         }}
-      >
-        <Text style={styles.textStyle}>Go to Components Screen</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
+      />
+      <Button
+        title="Go to Pictures Screen"
         onPress={() => {
           navigation.navigate("PicturesScreen");
         }}
-      >
-        <Text style={styles.picStyle}>Go to Pictures Screen</Text>
-      </TouchableOpacity>
+      />
 
-      <TouchableOpacity
+      <Button
+        title="Go to Counter Screen"
         onPress={() => {
           navigation.navigate("CounterScreen");
         }}
-      >
-        <Text style={styles.textStyle}>Go to Counter Screen</Text>
-      </TouchableOpacity>
+      />
 
-      <TouchableOpacity
+      <Button
+        title="Go to Color Screen"
         onPress={() => {
           navigation.navigate("RandomColorScreen");
         }}
-      >
-        <Text style={styles.textStyle}>Go to Color Screen</Text>
-      </TouchableOpacity>
+      />
 
       <Button
         onPress={() => {
           navigation.navigate("RgbControllerScreen");
         }}
         title="Go to RGB Controller Screen"
+      />
+
+      <Button
+        onPress={() => {
+          navigation.navigate("TextScreen");
+        }}
+        title="Go To Text Input Area"
       />
     </SafeAreaView>
   );

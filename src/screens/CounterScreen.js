@@ -1,7 +1,22 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import { Text, StyleSheet, SafeAreaView, Button } from "react-native";
+
+const reducerFunc = (state, action) => {
+  switch (action.performCount) {
+    case "increase":
+      return { counter: state.counter + 1 };
+
+    case "decrease":
+      return { counter: state.counter - 1 };
+
+    default:
+      return state;
+  }
+};
 const CounterScreen = () => {
-  const [counter, setCounter] = useState(0);
+  // const [counter, setCounter] = useState(0);
+
+  const [state, dispatch] = useReducer(reducerFunc, { counter: 0 });
   return (
     <SafeAreaView>
       <Text style={styles.textStyle}>Welcome to counter screen</Text>
@@ -9,14 +24,16 @@ const CounterScreen = () => {
       <Button
         title="Increase"
         onPress={() => {
-          setCounter(counter + 1);
+          dispatch({ performCount: "increase" });
         }}
       />
-      <Text style={(styles.textStyle, styles.counterNumber)}>{counter}</Text>
+      <Text style={(styles.textStyle, styles.counterNumber)}>
+        {state.counter}
+      </Text>
       <Button
         title="Decrease"
         onPress={() => {
-          setCounter(counter - 1);
+          dispatch({ performCount: "decrease" });
         }}
       />
     </SafeAreaView>
