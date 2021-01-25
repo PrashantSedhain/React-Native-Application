@@ -1,9 +1,32 @@
 import React, { useState } from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import NameInputComponent from "../components/NameInputComponent";
+import { FlatList, TextInput } from "react-native-gesture-handler";
+
+const Person = {
+  name: String,
+  points: Number,
+};
 
 const ComponentsScreen = ({ navigation }) => {
-  const [selectedValue, setSelectedValue] = useState("One");
+  const [selectedValue, setSelectedValue] = useState(0);
+  var peopleArray = [];
+  const data = {
+    count: selectedValue,
+    persons: [Person],
+  };
+
+  const addValueToArray = (num) => {
+    var arr = [];
+    for (var i = 0; i < num; i++) {
+      arr.push(i);
+    }
+
+    return arr;
+  };
+
+  peopleArray = addValueToArray(selectedValue);
 
   return (
     <View>
@@ -20,15 +43,28 @@ const ComponentsScreen = ({ navigation }) => {
         }}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
       >
-        <Picker.Item label="One" value="1" />
-        <Picker.Item label="Two" value="2" />
-        <Picker.Item label="Three" value="3" />
-        <Picker.Item label="Four" value="4" />
-        <Picker.Item label="Five" value="5" />
-        <Picker.Item label="Six" value="6" />
+        <Picker.Item label="One" value={1} />
+        <Picker.Item label="Two" value={2} />
+        <Picker.Item label="Three" value={3} />
+        <Picker.Item label="Four" value={4} />
+        <Picker.Item label="Five" value={5} />
+        <Picker.Item label="Six" value={6} />
       </Picker>
 
-      {/* <Text>Selected number of people is {selectedValue}</Text> */}
+      <Text style={styles.titleStyle}>2. Enter their names below:</Text>
+      <FlatList
+        data={peopleArray}
+        keyExtractor={(item) => {
+          return item + "123";
+        }}
+        renderItem={() => {
+          return <NameInputComponent />;
+        }}
+      />
+      {/* <NameInputComponent />
+      <NameInputComponent />
+      <NameInputComponent />
+      <NameInputComponent /> */}
     </View>
   );
 };
@@ -51,6 +87,10 @@ const styles = StyleSheet.create({
   lineStyle: {
     borderWidth: 1,
     borderColor: "gray",
+  },
+
+  numbering: {
+    fontSize: 18,
   },
 });
 
