@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import NameInputComponent from "../components/NameInputComponent";
-import {
-  FlatList,
-  TextInput,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
+import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 
 const Person = {
   name: String,
   points: Number,
 };
 
+var allPlayers = [];
+
+const addPlayer = (playerName) => {
+  allPlayers.push(playerName);
+};
+
 const ComponentsScreen = ({ navigation }) => {
   const [selectedValue, setSelectedValue] = useState(1);
+  const [points, setPoints] = useState({});
   var peopleArray = [];
   const data = {
     count: selectedValue,

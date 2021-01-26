@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 
-const NameInputComponent = () => {
+const NameInputComponent = (props) => {
+  var currentPlayer;
   return (
     <View style={{ paddingTop: 10 }}>
-      <TextInput style={styles.input} placeholder="E.g John" />
+      <TextInput
+        onEndEditing={props.addPlayer}
+        style={styles.input}
+        placeholder="E.g John"
+        value={currentPlayer}
+      />
     </View>
   );
 };

@@ -56,6 +56,13 @@ const HomeScreen = ({ navigation }) => {
         }}
         title="Go To Text Input Area"
       />
+
+      <Button
+        onPress={() => {
+          navigation.navigate("BoxScreen");
+        }}
+        title="Go To Box Screen"
+      />
     </SafeAreaView>
   );
 };

@@ -11,6 +11,7 @@ import CounterScreen from "./src/screens/CounterScreen";
 import RandomColorScreen from "./src/screens/RandomColorScreen";
 import RgbControllerScreen from "./src/screens/RgbControllerScreen";
 import TextScreen from "./src/screens/TextScreen";
+import BoxScreen from "./src/screens/BoxScreen";
 const Stack = createStackNavigator();
 
 function App() {
@@ -54,6 +55,12 @@ function App() {
           options={{ title: "RGB Controller Screen" }}
           name="RgbControllerScreen"
           component={RgbControllerScreen}
+        />
+
+        <Stack.Screen
+          options={{ title: "Box Screen" }}
+          name="BoxScreen"
+          component={BoxScreen}
         />
 
         <Stack.Screen
